@@ -1,26 +1,25 @@
+// src/App.jsx
+import { useEffect } from 'react';
+
 export default function App() {
-  return (
-    <div>
-      <h1>Falsify Genius</h1>
-      <p>Telegram Mini App работает!</p>
-    </div>
-  );
-}
-import { useTelegram } from './hooks/useTelegram';
+  useEffect(() => {
+    const tg = window.Telegram.WebApp;
+    tg.expand();
+    return () => tg.disableClosingConfirmation();
+  }, []);
 
-function App() {
-  const { tg, user } = useTelegram();
-
-  const handleClose = () => {
-    tg.close();
+  const handleSend = () => {
+    window.Telegram.WebApp.sendData(JSON.stringify({
+      action: "game_completed",
+      score: 100
+    }));
   };
 
   return (
     <div>
-      <h1>Привет, {user?.first_name || 'друг'}!</h1>
-      <button onClick={handleClose}>
-        Закрыть приложение
-      </button>
+      <h1>Falsify Genius</h1>
+      {/* Ваша игровая логика на React */}
+      <button onClick={handleSend}>Отправить результат</button>
     </div>
   );
 }
