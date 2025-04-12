@@ -4,8 +4,8 @@ import react from '@vitejs/plugin-react';
 export default defineConfig({
   plugins: [react()],
   build: {
-    outDir: '../dist',          // Сборка в корень проекта
+    outDir: '../dist',  // Сборка в корень проекта
     emptyOutDir: true,
   },
-  base: '/',                    // Важно для корректных путей
+  base: '/',  // Важно для Telegram Mini App
 });
