@@ -17,4 +17,8 @@
     "@vitejs/plugin-react": "^4.0.0",
     "vite": "^4.0.0"
   }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 10b5ea9bb8ae21da3a88c94791126aac51d0f3c3
