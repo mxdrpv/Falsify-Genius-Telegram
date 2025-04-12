@@ -1,30 +1,11 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <script src="https://telegram.org/js/twa.js"></script>
-  <script>
-  // Инициализация при загрузке страницы
-  document.addEventListener('DOMContentLoaded', () => {
-    const tg = window.Telegram.WebApp;
-    tg.expand(); // Раскрыть на весь экран
-    tg.enableClosingConfirmation(); // Включить подтверждение закрытия
-    
-    // Для отладки (можно удалить в продакшене)
-    console.log('Telegram WebApp initialized', tg);
-  });
-  </script>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Falsify Genius | Игра</title>
-  
-  <!-- Обязательный скрипт Telegram -->
   <script src="https://telegram.org/js/twa.js"></script>
   
-  <!-- Настройки адаптации под Telegram -->
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  
-  
-  <!-- Стили для русскоязычного интерфейса -->
   <style>
     body {
       margin: 0;
@@ -34,16 +15,10 @@
       color: var(--tg-theme-text-color, #222222);
       line-height: 1.5;
     }
-    
-    #app {
+    #root {
       padding: 16px;
       text-align: center;
     }
-    
-    h1 {
-      color: var(--tg-theme-text-color, #2a5885);
-    }
-    
     button {
       background: var(--tg-theme-button-color, #50a8eb);
       color: var(--tg-theme-button-text-color, #ffffff);
@@ -56,84 +31,25 @@
     }
   </style>
 </head>
+
 <body>
   <div id="root"></div>
-  <script type="module" src="/src/main.jsx"></script>
-</body>
-<body>
-  <div id="app">
-    <h1>Falsify Genius</h1>
-    <p>Угадайте, какое утверждение является ложным!</p>
-    
-    <div id="game-container">
-      <!-- Сюда будет вставляться игровой контент -->
-    </div>
-    
-    <button id="send-btn">Отправить результат</button>
-  </div>
-
-  <!-- Скрипт инициализации WebApp -->
+  
   <script>
     // Инициализация Telegram WebApp
     const tg = window.Telegram.WebApp;
     
-    // Устанавливаем русский язык (если поддерживается)
-    if (tg.initDataUnsafe?.user?.language_code) {
-      document.documentElement.lang = tg.initDataUnsafe.user.language_code;
-    } else {
-      document.documentElement.lang = 'ru';
-    }
+    // Устанавливаем русский язык
+    document.documentElement.lang = tg.initDataUnsafe?.user?.language_code || 'ru';
     
-    // Развернуть на весь экран
+    // Настройки WebApp
     tg.expand();
+    tg.enableClosingConfirmation();
     
-    // Пример данных игры
-    const gameData = {
-      question: "Какое из этих утверждений ложное?",
-      options: [
-        "В России 11 часовых поясов",
-        "Медведи впадают в спячку на 3 месяца",
-        "Кошки всегда приземляются на лапы"
-      ],
-      correctAnswer: 1  // Индекс правильного ответа
-    };
-    
-    // Генерация игрового интерфейса
-    function initGame() {
-      const container = document.getElementById('game-container');
-      
-      // Создаем вопрос
-      const questionEl = document.createElement('h2');
-      questionEl.textContent = gameData.question;
-      container.appendChild(questionEl);
-      
-      // Создаем варианты ответов
-      gameData.options.forEach((option, index) => {
-        const btn = document.createElement('button');
-        btn.textContent = option;
-        btn.onclick = () => checkAnswer(index);
-        container.appendChild(btn);
-      });
-    }
-    
-    // Проверка ответа
-    function checkAnswer(selectedIndex) {
-      const isCorrect = selectedIndex === gameData.correctAnswer;
-      alert(isCorrect ? "Верно! 🎉" : "Неверно! Попробуйте ещё раз.");
-    }
-    
-    // Отправка данных в бота
-    document.getElementById('send-btn').onclick = () => {
-      tg.sendData(JSON.stringify({
-        action: "game_completed",
-        score: 100,
-        language: "ru"
-      }));
-      tg.close();
-    };
-    
-    // Запуск игры при загрузке
-    initGame();
+    // Для отладки
+    console.log('Telegram WebApp initialized', tg);
   </script>
+  
+  <script type="module" src="/src/main.jsx"></script>
 </body>
 </html>
