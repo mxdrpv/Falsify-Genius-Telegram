@@ -6,3 +6,21 @@ export default function App() {
     </div>
   );
 }
+import { useTelegram } from './hooks/useTelegram';
+
+function App() {
+  const { tg, user } = useTelegram();
+
+  const handleClose = () => {
+    tg.close();
+  };
+
+  return (
+    <div>
+      <h1>Привет, {user?.first_name || 'друг'}!</h1>
+      <button onClick={handleClose}>
+        Закрыть приложение
+      </button>
+    </div>
+  );
+}
