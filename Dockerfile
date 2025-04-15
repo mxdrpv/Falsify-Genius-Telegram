@@ -16,7 +16,7 @@ RUN npm install --force && npm install vite --save-dev && npm run build
 
 # Возвращаемся в корень и ставим серверные зависимости
 WORKDIR /app
-RUN npm install --omit=dev
+RUN npm install
 
 # Указываем команду запуска сервера
 CMD ["node", "server.mjs"]
