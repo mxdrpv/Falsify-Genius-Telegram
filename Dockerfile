@@ -5,9 +5,11 @@ RUN apt-get update && apt-get install -y ncurses-bin
 WORKDIR /app
 COPY . .
 
+# Фронт
 WORKDIR /app/client
 RUN npm install --force && npm run build
 
+# Сервер
 WORKDIR /app
 RUN npm install
 
