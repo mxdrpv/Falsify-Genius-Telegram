@@ -2,6 +2,8 @@ import express from 'express'; // используем import, а не require
 import dotenv from 'dotenv';
 import path from 'path'; // так же, импортируем через import
 import { Telegraf } from 'telegraf'; // импортируем Telegraf
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
 
 dotenv.config();
 
@@ -9,6 +11,8 @@ dotenv.config();
 const app = express();
 const bot = new Telegraf(process.env.BOT_TOKEN);
 const PORT = process.env.PORT || 3000;
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 // Middleware
 app.use(express.json());
