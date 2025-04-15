@@ -1,9 +1,9 @@
-import express from 'express';
+import express from 'express'; // используем import, а не require
 import dotenv from 'dotenv';
+import path from 'path'; // так же, импортируем через import
+import { Telegraf } from 'telegraf'; // импортируем Telegraf
+
 dotenv.config();
-const express = require('express');
-const path = require('path');
-const { Telegraf } = require('telegraf');
 
 // Инициализация
 const app = express();
