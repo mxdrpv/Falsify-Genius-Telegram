@@ -1,0 +1,14 @@
+{
+  "name": "falsify-genius-telegram",
+  "version": "1.0.0",
+  "description": "Игра 'Лживый гений' для Telegram с миниаппом",
+  "main": "server/server.js",
+  "scripts": {
+    "start": "node server/server.js"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "node-telegram-bot-api": "^0.52.0",
+    "body-parser": "^1.19.0"
+  }
+}
