@@ -7,8 +7,5 @@ export default defineConfig({
   publicDir: 'public',
   build: {
     outDir: 'dist',
-    rollupOptions: {
-      input: path.resolve(__dirname, 'client/public/index.html'),
-    },
   },
 })
