@@ -19,4 +19,4 @@ WORKDIR /app
 RUN npm install --omit=dev
 
 # Указываем команду запуска сервера
-CMD ["node", "server.js"]
+CMD ["node", "server.mjs"]
